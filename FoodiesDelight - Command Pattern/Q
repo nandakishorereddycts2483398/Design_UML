@@ -1,0 +1,180 @@
+Description
+
+
+
+
+
+Scenario:
+
+In Foodies Delight Restaurant, customers can place an order for food or cancel an order they previously placed. The restaurant uses a system where each order has an ID, the name of the dish, and the time the order was placed. The restaurant uses the Command Pattern to manage the flow of orders and cancellations. The system processes the customer's commands to either place an order or cancel it.
+
+Your task is to implement this order processing system using the Command Pattern in C#.
+
+ 
+
+Functionality:
+
+In public class Order, implement the following public field:
+
+Datatype
+
+Field Name
+
+int
+
+id
+
+string
+
+dishName
+
+string
+
+time
+
+Create a public constructor in class Order with int id, string dishName and string time as arguments to set the values of id, dishName and time.
+
+ 
+
+Declare the following public method in public interface ICommand,
+
+Method Name
+
+Method Description
+
+public void Execute()
+
+This method is the declaration for executing the command. Classes that implement this interface (e.g., PlaceOrder and CancelOrder) will provide their own implementation of this method.
+
+ 
+
+Implement the following public method and private field in public class PlaceOrder which implements the interface ICommand,
+
+Type
+
+Field Name
+
+Order
+
+order
+
+ 
+
+Method Name
+
+Method Description
+
+public void Execute()
+
+This method processes the order by displaying the order details (order ID, dish name, and order time). It confirms that the order has been placed by displaying the message "Your order id is: {order.id}, Dish: {order.dishName} ordered at {order.time}".
+
+Create a public constructor in class PlaceOrder with an Order object as argument to set the value order.
+
+ 
+
+Implement the following public method and private field in public class CancelOrder which implements the interface ICommand,
+
+Type
+
+Field Name
+
+Order
+
+order
+
+ 
+
+Method Name
+
+Method Description
+
+public void Execute()
+
+This method cancels the order by displaying a message "Order id: {order.id} for {order.dishName} is canceled" indicating that the specific order has been canceled (order ID and dish name).
+
+Create a public constructor in class CancelOrder with an Order object as argument to set the value order.
+
+ 
+
+Implement the following public method and private field in public class Restaurant,
+
+Type
+
+Field Name
+
+ICommand
+
+command
+
+ 
+
+Method Name
+
+Method Description
+
+public void AddCommand(ICommand command)
+
+This method takes a ICommand object (either PlaceOrder or CancelOrder) and assigns it to a private field in the Restaurant class. It prepares the command to be executed later.
+
+public void ProcessCommand()
+
+This method invokes the Execute() method if the command object is not null that was assigned through  AddCommand method. It triggers the execution of the corresponding command (place or cancel the order).
+
+ 
+
+In the Program class, implement the below-given Method.
+
+Method:
+
+public static void Main(string[] args)
+
+Description:
+
+-       Gather input from the user for placing or canceling an order.
+
+-       Collect the order details (id, dish name, time) from the user, create an Order object, and process it by invoking the PlaceOrder command through the Restaurant class.
+
+-       Then ask the user for the order id to cancel, and if the id matches the previously placed order, invoke the CancelOrder command to cancel the order.
+
+-       The method processes both commands using the Restaurant class as the invoker.
+
+Refer to Sample input and output.
+
+ 
+
+Note:
+
+- Keep all methods public.
+
+- Inputs should only be gathered in the Main method.
+
+- Do not use Environment.Exit() to terminate the program. 
+
+- Do not change the given code template.
+
+- In the Sample Input / Output provided, the highlighted text in bold corresponds to the input given by the user and the rest of the text represents the output.
+
+ 
+
+Sample Input/Output 1:
+
+Enter the order id:
+
+200
+
+Enter the dish name:
+
+Pasta
+
+Enter the order time:
+
+12:00 PM
+
+Your order id is: 200, Dish: Pasta ordered at 12:00 PM
+
+Enter the order id to cancel:
+
+200
+
+Order id: 200 for Pasta is canceled
+
